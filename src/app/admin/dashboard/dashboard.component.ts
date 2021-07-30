@@ -20,11 +20,10 @@ export class DashboardComponent implements OnInit {
   isEmptyProduct: boolean = true;
 
   constructor(
-    private auth: AngularFireAuth,
-    private fire: AngularFirestore
+    private fire: AngularFirestore,
+    auth: AngularFireAuth,
   ) { 
     this.getLength();
-    this.getUser();
     this.getProduct();
     auth.authState.subscribe(resp => {
       fire.collection('user').ref.where('email', '==', resp!.email).onSnapshot(snapshot => {
@@ -45,20 +44,6 @@ export class DashboardComponent implements OnInit {
 
     this.fire.collection('product').snapshotChanges().subscribe((resp) => {
       this.totalProduct = resp.length;
-    })
-  }
-
-  getUser() {
-    this.fire.collection('user', ref => (
-      ref.orderBy('created_at', 'desc'),
-      ref.limit(5)
-    )).snapshotChanges().subscribe((resp) => {
-      this.listUser = resp;
-      if(this.totalUser != 0) {
-        this.isEmptyUser = false;
-      } else {
-        this.isEmptyUser = true;
-      }
     })
   }
 

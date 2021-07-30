@@ -31,29 +31,6 @@
               </div>
             </div>
           </div>
-          <div  *ngIf="!isEmptyUser" class="table-responsive">
-            <table class="table my-5">
-              <caption>List 5 user terbaru</caption>
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Role</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of listUser; let idx=index">
-                  <td>{{ idx + 1 }}</td>
-                  <td>{{ data.payload.doc.data().username }}</td>
-                  <td>{{ data.payload.doc.data().phone }}</td>
-                  <td>{{ data.payload.doc.data().email }}</td>
-                  <td>{{ data.payload.doc.data().role }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
           <div *ngIf="!isEmptyProduct" class="table-responsive">
             <table class="table my-5">
